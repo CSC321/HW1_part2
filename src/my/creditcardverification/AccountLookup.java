@@ -3,6 +3,7 @@ package my.creditcardverification;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -41,12 +42,14 @@ public class AccountLookup {
                 }
             }
             infile.close();
-            String validOutput = "VALID \n";
+            String validOutput = "VALID\n";
+//            Collections.sort(validAccounts);
             for (int i=0; i<validAccounts.size();i++) {
                 Account account = (Account)validAccounts.get(i);
                 validOutput+=account.getAccountNumber()+"\n";
             }
-            String invalidOutput = "INVALID \n";
+            String invalidOutput = "\nINVALID \n";
+//            Collections.sort(invalidAccounts);
             for (int i=0; i<invalidAccounts.size();i++) {
                 Account account = (Account)invalidAccounts.get(i);
                 invalidOutput+=account.getAccountNumber()+"\n";
