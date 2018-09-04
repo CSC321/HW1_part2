@@ -1,5 +1,5 @@
 build.xml
-manifext.mf
+manifest.mf
 test/
 nbproject/
 build/
