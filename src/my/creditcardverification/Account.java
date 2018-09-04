@@ -3,8 +3,8 @@ package my.creditcardverification;
 /**
  * Class that stores account numbers
  * 
- * @author Kikki Beltz, Zalak Pandya
- * @version August 2018
+ * @author Kikki Beltz
+ * @version September 2018
  */
 public class Account {
     

@@ -8,8 +8,8 @@ import java.util.Scanner;
 /**
  * Class that stores information on accounts
  * 
- * @author Kikki Beltz, Zalak Pandya
- * @version August 2018
+ * @author Kikki Beltz
+ * @version September 2018
  */
 public class AccountLookup {
     
@@ -23,27 +23,35 @@ public class AccountLookup {
      */
     public String accountLookup(String fileName) {
         this.accounts = new ArrayList<Account>();
+        // Initialize separate ArrayLists for valid and invalid accounts
+        ArrayList validAccounts = new ArrayList<Account>();
+        ArrayList invalidAccounts = new ArrayList<Account>();
         
         try {
             Scanner infile = new Scanner(new File(fileName));
-            String output = "";
             while (infile.hasNextLine()) {
                 String accountNumber = infile.nextLine().trim();
                 // Create new Account object
                 Account newAccount = new Account(accountNumber);
                 boolean isValid = newAccount.validate();
-                String validity;
                 if (isValid) {
-                    validity = "VALID";
+                    validAccounts.add(newAccount);
                 } else {
-                    validity = "INVALID";
+                    invalidAccounts.add(newAccount);
                 }
-                // Add Account object to the accounts ArrayList
-                this.accounts.add(newAccount);
-                output = output + newAccount.getAccountNumber() + " " + validity + "\n ";
             }
             infile.close();
-            return output;    
+            String validOutput = "VALID \n";
+            for (int i=0; i<validAccounts.size();i++) {
+                Account account = (Account)validAccounts.get(i);
+                validOutput+=account.getAccountNumber()+"\n";
+            }
+            String invalidOutput = "INVALID \n";
+            for (int i=0; i<invalidAccounts.size();i++) {
+                Account account = (Account)invalidAccounts.get(i);
+                invalidOutput+=account.getAccountNumber()+"\n";
+            }
+            return validOutput + invalidOutput;    
         } catch (FileNotFoundException ex) {
             return "No such file: " + fileName;
         }

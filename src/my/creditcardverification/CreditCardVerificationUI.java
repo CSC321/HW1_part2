@@ -3,8 +3,8 @@ package my.creditcardverification;
 /**
  * Class that handles the Credit Card Verification UI
  * 
- * @author Kikki Beltz, Zalak Pandya
- * @version August 2018
+ * @author Kikki Beltz
+ * @version September 2018
  */
 public class CreditCardVerificationUI extends javax.swing.JFrame {
 
