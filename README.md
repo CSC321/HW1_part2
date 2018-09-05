@@ -1,4 +1,4 @@
-# HW2
+# HW1 part 2
 
 For the second part of this assignment, you are to organize the output so that all of the valid sequences are displayed together (with heading VALID), followed by all of the invalid sequences (with heading INVALID). Within each category, the sequences should be displayed in increasing numerical order (ignoring any non-digits).
 
