@@ -14,7 +14,8 @@ import java.util.Scanner;
  */
 public class AccountLookup {
     
-    private ArrayList<Account> accounts;
+    private ArrayList<Account> validAccounts;
+    private ArrayList<Account> invalidAccounts;
     
     /**
      * Constructor of an AccountLookup object with data from the specified file
@@ -23,10 +24,10 @@ public class AccountLookup {
      * @return result as string to GUI
      */
     public String accountLookup(String fileName) {
-        this.accounts = new ArrayList<Account>();
+//        this.accounts = new ArrayList<Account>();
         // Initialize separate ArrayLists for valid and invalid accounts
-        ArrayList validAccounts = new ArrayList<Account>();
-        ArrayList invalidAccounts = new ArrayList<Account>();
+        this.validAccounts = new ArrayList<Account>();
+        this.invalidAccounts = new ArrayList<Account>();
         
         try {
             Scanner infile = new Scanner(new File(fileName));
@@ -48,7 +49,7 @@ public class AccountLookup {
                 Account account = (Account)validAccounts.get(i);
                 validOutput+=account.getAccountNumber()+"\n";
             }
-            String invalidOutput = "\nINVALID \n";
+            String invalidOutput = "\nINVALID\n";
             Collections.sort(invalidAccounts);
             for (int i=0; i<invalidAccounts.size();i++) {
                 Account account = (Account)invalidAccounts.get(i);
@@ -59,5 +60,4 @@ public class AccountLookup {
             return "No such file: " + fileName;
         }
     }
-    
 }

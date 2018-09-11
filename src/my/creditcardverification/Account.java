@@ -59,26 +59,17 @@ public class Account implements Comparable<Account> {
         }
         if (numCorrupt == 1) {
             int x;
-            int length = this.accountNumber.length();
-            int index = this.accountNumber.indexOf('?');
-            if ((length%2==0 && index%2!=0)||(length%2!=0 && index%2==0)) {
-                x = 10-luhnValue%10;
-                luhnValue = luhnValue+x;
-                System.out.println(luhnValue);
+            String str = this.accountNumber.replaceAll(" ", "");
+            int length = str.length();
+            int index = str.indexOf('?');
+            if((length%2==0 && index%2==0) || (length%2!=0 && index%2!=0)) {
+                x = (10 - (luhnValue%10))/2;
+                luhnValue = luhnValue + (2*x);
             } else {
-                x = (10-luhnValue%10)/2;
-                System.out.println(luhnValue);
-                luhnValue = luhnValue+2*x;
-                System.out.println(luhnValue);
+                x = 10 - (luhnValue%10);
+                luhnValue = luhnValue + x;
             }
-//            System.out.println(index);
-//            System.out.println(length);
-            System.out.println(x);
-            // TODO: these need to be checked
-            String newAccountNumber = this.accountNumber.replace("?", Integer.toString(x));
-            System.out.println(newAccountNumber);
-            this.accountNumber = newAccountNumber;
-//            System.out.println(luhnValue);
+            this.accountNumber = this.accountNumber.replace("?", Integer.toString(x));
         }
         // if the last digit is 0, return true, else return false
         return luhnValue%10==0;
